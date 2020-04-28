@@ -3,27 +3,27 @@ import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 const httpLink = createHttpLink({
-	uri: process.env.API_SERVER_URL,
+	uri: process.env.REACT_APP_API_SERVER_URL,
 });
 
-const client = new ApolloClient({
+const client = new ApolloClient<NormalizedCacheObject>({
 	link: httpLink,
 	cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
-	<ApolloProvider client={client}>
-		<React.StrictMode>
+	<React.StrictMode>
+		<ApolloProvider client={client}>
 			<App />
-		</React.StrictMode>
-	</ApolloProvider>,
+		</ApolloProvider>
+	</React.StrictMode>,
 	document.getElementById("root")
 );
 
