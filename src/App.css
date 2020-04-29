@@ -1,3 +1,9 @@
 .App {
-  text-align: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main {
+  width: 768px;
+  height: 100%;
 }

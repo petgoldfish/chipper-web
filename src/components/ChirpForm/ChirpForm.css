@@ -1,0 +1,11 @@
+.chirp-form {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.chirp-input {
+	flex: 0.7;
+	height: 80px;
+	margin: 16px;
+}
