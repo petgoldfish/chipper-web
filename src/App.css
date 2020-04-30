@@ -1,9 +1,21 @@
 .App {
   align-items: center;
   height: 100vh;
+  background-color: #616161;
+	color: whitesmoke;
 }
 
 .main {
   width: 768px;
-  height: 100%;
+  flex: 1;
+}
+
+.card {
+  background: #424242;
+	border: none;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+	border-radius: 8px;
+	color: whitesmoke;
+  padding: 16px;
+  margin-bottom: 16px;
 }
