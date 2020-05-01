@@ -5,6 +5,7 @@ import React from "react";
 import ChirpForm from "./components/ChirpForm/ChirpForm";
 import ChirpList from "./components/ChirpList/ChirpList";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<ChirpForm />
 				<ChirpList />
 			</div>
+			<Footer />
 		</div>
 	);
 }
