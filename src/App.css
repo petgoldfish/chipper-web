@@ -13,7 +13,6 @@
   background-color: var(--secondary);
 	color: var(--primary-text);
 }
-}
 
 .main {
   width: 768px;
@@ -30,4 +29,10 @@
 	color: var(--primary-text);
   padding: var(--space);
   margin-bottom: var(--space);
+}
+
+@media only screen and (max-device-width: 480px) {
+  .main {
+    width: 100%;
+  }
 }
