@@ -14,9 +14,3 @@
 	font-family: inherit;
 	transition: 0.1s ease;
 }
-
-.chirp-input {
-	flex: 0.7;
-	height: 80px;
-	margin: 16px;
-}
