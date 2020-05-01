@@ -1,10 +1,12 @@
 :root {
   --primary: #424242;
   --secondary: #616161;
+  --accent: #FFD600;
   --primary-text: whitesmoke;
   --shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   --rounding: 8px;
   --space: 16px;
+  --space-s: 8px;
 }
 
 .App {

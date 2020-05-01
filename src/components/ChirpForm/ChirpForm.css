@@ -12,5 +12,7 @@
 .chirp-form__button {
 	cursor: pointer;
 	font-family: inherit;
-	transition: 0.1s ease;
+	background-color: var(--accent);
+	padding: var(--space-s);
+	color: black;
 }
