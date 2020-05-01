@@ -9,7 +9,7 @@ type ChirpCardProps = {
 
 export default function ChirpCard({ chirp }: ChirpCardProps) {
 	return (
-		<div className="card flex-column">
+		<div className="card flex-column chirp-card">
 			<div className="chirp-card__content">{chirp.content}</div>
 			<div className="chirp-card__meta">Metadata</div>
 		</div>

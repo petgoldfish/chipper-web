@@ -1,7 +1,19 @@
 .chirp-form {
 	width: 100%;
-	display: flex;
-	justify-content: center;
+	align-items: center;
+	margin-bottom: var(--space);
+}
+
+.chirp-form__textarea {
+	width: 50%;
+	min-height: 80px;
+	resize: none;
+}
+
+.chirp-form__button {
+	cursor: pointer;
+	font-family: inherit;
+	transition: 0.1s ease;
 }
 
 .chirp-input {

@@ -1,21 +1,38 @@
+:root {
+  --primary: #424242;
+  --secondary: #616161;
+  --primary-text: whitesmoke;
+  --shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  --rounding: 8px;
+  --space: 16px;
+}
+
 .App {
   align-items: center;
   height: 100vh;
-  background-color: #616161;
-	color: whitesmoke;
+  background-color: var(--secondary);
+	color: var(--primary-text);
 }
 
 .main {
   width: 768px;
   flex: 1;
+  margin-top: var(--space);
+  min-height: 0;
 }
 
 .card {
-  background: #424242;
+  background: var(--primary);
 	border: none;
-	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-	border-radius: 8px;
-	color: whitesmoke;
-  padding: 16px;
-  margin-bottom: 16px;
+	box-shadow: var(--shadow);
+	border-radius: var(--rounding);
+	color: var(--primary-text);
+  padding: var(--space);
+  margin-bottom: var(--space);
+}
+
+@media only screen and (max-device-width: 480px) {
+  .main {
+    width: 100%;
+  }
 }

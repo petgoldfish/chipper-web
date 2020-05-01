@@ -1,4 +1,14 @@
 .chirp-list {
 	flex: 1;
-	width: 100%;
+	align-self: stretch;
+	margin-top: var(--space);
+	overflow-y: auto;
+
+	/* Hide scrollbar on Firefox */
+	scrollbar-width: none;
+}
+
+/* Hide scrollbar on Chrome/Safari */
+.chirp-list::-webkit-scrollbar {
+	display: none;
 }
