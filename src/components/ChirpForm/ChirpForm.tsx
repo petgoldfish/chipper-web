@@ -1,6 +1,6 @@
-import React from "react";
-
 import "./ChirpForm.css";
+
+import React from "react";
 
 export default function ChirpForm() {
 	return (
@@ -10,7 +10,9 @@ export default function ChirpForm() {
 				placeholder="what's buggin' ya?"
 				aria-label="Chirp Text"
 			/>
-			<button className="chirp-form__button card" type="submit">chirp!</button>
+			<button className="button card" type="submit">
+				chirp!
+			</button>
 		</div>
 	);
 }
