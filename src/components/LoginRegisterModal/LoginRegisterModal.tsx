@@ -3,6 +3,7 @@ import "./LoginRegisterModal.css";
 import React from "react";
 import ReactModal from "react-modal";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { object, string } from "yup";
 
 type propTypes = {
 	showModal: boolean;
@@ -14,6 +15,11 @@ export default function LoginRegisterModal({
 	setShowModal,
 }: propTypes) {
 	const handleLogin = () => {};
+
+	const loginSchema = object().shape({
+		username: string().required("username is required"),
+		password: string().required("password is required"),
+	});
 
 	return (
 		<ReactModal
@@ -32,6 +38,7 @@ export default function LoginRegisterModal({
 			</button>
 			<Formik
 				initialValues={{ username: "", password: "" }}
+				validationSchema={loginSchema}
 				onSubmit={handleLogin}
 			>
 				<Form className="flex-column">
@@ -42,7 +49,11 @@ export default function LoginRegisterModal({
 						placeHolder="username"
 						aria-label="username"
 					/>
-					<ErrorMessage name="username" />
+					<ErrorMessage name="username">
+						{(error) => (
+							<div className="login-register-modal__error">{error}</div>
+						)}
+					</ErrorMessage>
 					<Field
 						name="password"
 						type="password"
@@ -50,7 +61,11 @@ export default function LoginRegisterModal({
 						placeHolder="password"
 						aria-label="password"
 					/>
-					<ErrorMessage name="password" />
+					<ErrorMessage name="password">
+						{(error) => (
+							<div className="login-register-modal__error">{error}</div>
+						)}
+					</ErrorMessage>
 					<button className="button card">login</button>
 				</Form>
 			</Formik>

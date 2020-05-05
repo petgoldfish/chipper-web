@@ -22,3 +22,9 @@
 .login-register-modal__input {
 	font-family: inherit;
 }
+
+.login-register-modal__error {
+	font-size: 0.8rem;
+	margin-left: var(--space);
+	margin-bottom: var(--space);
+}
