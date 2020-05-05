@@ -22,7 +22,7 @@ export default function LoginRegisterModal({
 			appElement={document.getElementById("root")!}
 		>
 			<button
-				style={{ alignSelf: "flex-end" }}
+				className="button card login-register-modal__button"
 				onClick={(e) => setShowModal(false)}
 			>
 				X
