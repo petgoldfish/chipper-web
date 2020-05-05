@@ -1,0 +1,19 @@
+.login-register-modal__overlay {
+	background-color: rgba(97, 97, 97, 0.667);
+	position: fixed;
+	inset: 0px;
+}
+
+.login-register-modal__content {
+	background-color: var(--primary);
+	border-radius: var(--rounding);
+	color: var(--primary-text);
+	padding: var(--space);
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	inset: 40px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
