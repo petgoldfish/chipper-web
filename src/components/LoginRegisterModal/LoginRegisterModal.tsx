@@ -2,19 +2,32 @@ import "./LoginRegisterModal.css";
 
 import React from "react";
 import ReactModal from "react-modal";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { object, string } from "yup";
 
-type propTypes = {
+type PropTypes = {
 	showModal: boolean;
 	setShowModal: Function;
+};
+
+type LoginFormValues = {
+	username: string;
+	password: string;
 };
 
 export default function LoginRegisterModal({
 	showModal,
 	setShowModal,
-}: propTypes) {
-	const handleLogin = () => {};
+}: PropTypes) {
+	const initialValues: LoginFormValues = { username: "", password: "" };
+
+	const handleLogin = (
+		values: LoginFormValues,
+		actions: FormikHelpers<LoginFormValues>
+	) => {
+		actions.resetForm();
+		setShowModal(false);
+	};
 
 	const loginSchema = object().shape({
 		username: string().required("username is required"),
@@ -37,37 +50,41 @@ export default function LoginRegisterModal({
 				X
 			</button>
 			<Formik
-				initialValues={{ username: "", password: "" }}
+				initialValues={initialValues}
 				validationSchema={loginSchema}
 				onSubmit={handleLogin}
 			>
-				<Form className="flex-column">
-					<Field
-						name="username"
-						type="text"
-						className="card login-register-modal__input"
-						placeHolder="username"
-						aria-label="username"
-					/>
-					<ErrorMessage name="username">
-						{(error) => (
-							<div className="login-register-modal__error">{error}</div>
-						)}
-					</ErrorMessage>
-					<Field
-						name="password"
-						type="password"
-						className="card login-register-modal__input"
-						placeHolder="password"
-						aria-label="password"
-					/>
-					<ErrorMessage name="password">
-						{(error) => (
-							<div className="login-register-modal__error">{error}</div>
-						)}
-					</ErrorMessage>
-					<button className="button card">login</button>
-				</Form>
+				{({isSubmitting}) => (
+					<Form className="flex-column">
+						<Field
+							name="username"
+							type="text"
+							className="card login-register-modal__input"
+							placeholder="username"
+							aria-label="username"
+						/>
+						<ErrorMessage name="username">
+							{(error) => (
+								<div className="login-register-modal__error">{error}</div>
+							)}
+						</ErrorMessage>
+						<Field
+							name="password"
+							type="password"
+							className="card login-register-modal__input"
+							placeholder="password"
+							aria-label="password"
+						/>
+						<ErrorMessage name="password">
+							{(error) => (
+								<div className="login-register-modal__error">{error}</div>
+							)}
+						</ErrorMessage>
+						<button disabled={isSubmitting} className="button card" type="submit">
+							login
+						</button>
+					</Form>
+				)}
 			</Formik>
 		</ReactModal>
 	);
