@@ -1,16 +1,13 @@
 .login-register-modal__overlay {
-	background-color: rgba(97, 97, 97, 0.667);
+	background-color: rgba(255, 255, 255, 0.25);
 	position: fixed;
 	inset: 0px;
 }
 
 .login-register-modal__content {
-	background-color: var(--primary);
-	border-radius: var(--rounding);
-	color: var(--primary-text);
-	padding: var(--space);
 	width: 50%;
-	height: 50%;
+	height: 450px;
+	max-height: 75%;
 	position: absolute;
 	inset: 40px;
 	margin: auto;
@@ -18,6 +15,10 @@
 	flex-direction: column;
 }
 
-.login-register-modal__button {
+.login-register-modal__close {
 	align-self: flex-end;
+}
+
+.login-register-modal__input {
+	font-family: inherit;
 }

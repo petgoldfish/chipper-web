@@ -25,13 +25,21 @@
 }
 
 .card {
-  background: var(--primary);
+  background-color: var(--primary);
 	border: none;
 	box-shadow: var(--shadow);
 	border-radius: var(--rounding);
 	color: var(--primary-text);
   padding: var(--space);
   margin-bottom: var(--space);
+}
+
+.card--secondary {
+  background-color: var(--secondary);
+}
+
+.card--no-shadow {
+  box-shadow: none;
 }
 
 .button {
