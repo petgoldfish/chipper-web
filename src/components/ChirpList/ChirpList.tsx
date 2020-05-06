@@ -37,7 +37,7 @@ export default function ChirpList() {
 	return (
 		<div className="chirp-list flex-column">
 			{data.feed?.map((chirp: Chirp) => (
-				<ChirpCard chirp={chirp} />
+				<ChirpCard key={chirp.id} chirp={chirp} />
 			))}
 		</div>
 	);
