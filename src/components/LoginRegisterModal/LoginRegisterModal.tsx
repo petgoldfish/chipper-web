@@ -2,12 +2,15 @@ import "./LoginRegisterModal.css";
 
 import React from "react";
 import ReactModal from "react-modal";
+import gql from "graphql-tag";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { object, string } from "yup";
+import { useMutation } from "@apollo/react-hooks";
+import { LoginMutation } from "../../generated/graphql";
 
 type PropTypes = {
 	showModal: boolean;
-	setShowModal: Function;
+	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type LoginFormValues = {
@@ -15,21 +18,35 @@ type LoginFormValues = {
 	password: string;
 };
 
+const LOGIN_MUTATION = gql`
+	mutation login($username: String!, $password: String!) {
+		login(name: $username, password: $password) {
+			token
+			userId
+		}
+	}
+`;
+
 export default function LoginRegisterModal({
 	showModal,
 	setShowModal,
 }: PropTypes) {
+	const [login, { data }] = useMutation<LoginMutation>(LOGIN_MUTATION);
 	const initialValues: LoginFormValues = { username: "", password: "" };
 
-	const handleLogin = (
-		values: LoginFormValues,
+	const handleLogin = async (
+		{ username, password }: LoginFormValues,
 		actions: FormikHelpers<LoginFormValues>
 	) => {
 		actions.resetForm();
+		actions.setSubmitting(true);
+		const { data } = await login({ variables: { username, password } });
+		actions.setSubmitting(false);
+		console.log(data);
 		setShowModal(false);
 	};
 
-	const loginSchema = object().shape({
+	const loginValidationSchema = object().shape({
 		username: string().required("username is required"),
 		password: string().required("password is required"),
 	});
@@ -51,10 +68,10 @@ export default function LoginRegisterModal({
 			</button>
 			<Formik
 				initialValues={initialValues}
-				validationSchema={loginSchema}
+				validationSchema={loginValidationSchema}
 				onSubmit={handleLogin}
 			>
-				{({isSubmitting}) => (
+				{({ isSubmitting }) => (
 					<Form className="flex-column">
 						<Field
 							name="username"
@@ -80,7 +97,11 @@ export default function LoginRegisterModal({
 								<div className="login-register-modal__error">{error}</div>
 							)}
 						</ErrorMessage>
-						<button disabled={isSubmitting} className="button card" type="submit">
+						<button
+							disabled={isSubmitting}
+							className="button card"
+							type="submit"
+						>
 							login
 						</button>
 					</Form>

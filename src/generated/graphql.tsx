@@ -89,3 +89,17 @@ export type FeedQuery = (
     ) }
   )>> }
 );
+
+export type LoginMutationVariables = {
+  username: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type LoginMutation = (
+  { __typename?: 'Mutation' }
+  & { login: (
+    { __typename?: 'AuthPayload' }
+    & Pick<AuthPayload, 'token' | 'userId'>
+  ) }
+);
