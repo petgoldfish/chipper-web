@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { object, string } from "yup";
 import { useMutation } from "@apollo/react-hooks";
 import { LoginMutation } from "../../generated/graphql";
+import { setAuthToken } from "../../authToken";
 
 type PropTypes = {
 	showModal: boolean;
@@ -31,7 +32,7 @@ export default function LoginRegisterModal({
 	showModal,
 	setShowModal,
 }: PropTypes) {
-	const [login, { data }] = useMutation<LoginMutation>(LOGIN_MUTATION);
+	const [login, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION);
 	const initialValues: LoginFormValues = { username: "", password: "" };
 
 	const handleLogin = async (
@@ -41,8 +42,8 @@ export default function LoginRegisterModal({
 		actions.resetForm();
 		actions.setSubmitting(true);
 		const { data } = await login({ variables: { username, password } });
+		setAuthToken(data?.login.token);
 		actions.setSubmitting(false);
-		console.log(data);
 		setShowModal(false);
 	};
 
@@ -54,8 +55,24 @@ export default function LoginRegisterModal({
 	return (
 		<ReactModal
 			isOpen={showModal}
-			className="login-register-modal__content card card--secondary"
-			overlayClassName="login-register-modal__overlay"
+			style={{
+				overlay: {
+					backgroundColor: "#ffffff40",
+				},
+				content: {
+					display: "flex",
+					flexDirection: "column",
+					backgroundColor: "var(--secondary)",
+					boxShadow: "var(--shadow)",
+					borderRadius: "var(--rounding)",
+					height: 350,
+					width: 350,
+					maxHeight: "75%",
+					maxWidth: "75%",
+					margin: "auto",
+					border: "none",
+				},
+			}}
 			contentLabel="Login/Register Modal"
 			onRequestClose={(e) => setShowModal(false)}
 			appElement={document.getElementById("root")!}
@@ -104,6 +121,17 @@ export default function LoginRegisterModal({
 						>
 							login
 						</button>
+						{error &&
+							error.graphQLErrors.map((gqlError, index) => (
+								<div key={index} className="login-register-modal__error">
+									{gqlError.message}
+								</div>
+							))}
+						{error && error.networkError && (
+							<div className="login-register-modal__error">
+								error connecting to server :(
+							</div>
+						)}
 					</Form>
 				)}
 			</Formik>
