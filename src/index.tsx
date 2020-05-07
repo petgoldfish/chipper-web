@@ -1,21 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
+import ApolloClient, {
+	InMemoryCache,
+	NormalizedCacheObject,
+} from "apollo-boost";
 
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-const httpLink = createHttpLink({
-	uri: process.env.REACT_APP_API_SERVER_URL,
-});
+import { getAuthToken } from "./authToken";
 
 const client = new ApolloClient<NormalizedCacheObject>({
-	link: httpLink,
+	uri: process.env.REACT_APP_API_SERVER_URL,
 	cache: new InMemoryCache(),
+	request: (operation) => {
+		const token = getAuthToken();
+		operation.setContext({
+			headers: {
+				authorization: token ? `Bearer ${token}` : "",
+			},
+		});
+	},
 });
 
 ReactDOM.render(

@@ -1,0 +1,10 @@
+.login-form__input {
+	font-family: inherit;
+}
+
+.login-form__error {
+	font-size: 0.8rem;
+	color: tomato;
+	margin-left: var(--space);
+	margin-bottom: var(--space);
+}
