@@ -1,10 +1,10 @@
 import "./LoginRegisterModal.css"
 
-import React from "react";
+import React, { ReactElement } from "react";
 import ReactModal from "react-modal";
 import LoginForm from "../LoginForm/LoginForm";
 
-type PropTypes = {
+interface Props {
 	showModal: boolean;
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -12,7 +12,7 @@ type PropTypes = {
 export default function LoginRegisterModal({
 	showModal,
 	setShowModal,
-}: PropTypes) {
+}: Props): ReactElement {
 	return (
 		<ReactModal
 			isOpen={showModal}
