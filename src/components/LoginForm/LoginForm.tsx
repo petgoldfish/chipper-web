@@ -34,11 +34,11 @@ export default function LoginForm({ setShowModal }: Props): ReactElement {
 		{ username, password }: LoginFormValues,
 		actions: FormikHelpers<LoginFormValues>
 	) => {
-		actions.resetForm();
 		actions.setSubmitting(true);
 		const { data } = await login({ variables: { username, password } });
 		setAuthToken(data?.login.token);
 		actions.setSubmitting(false);
+		actions.resetForm();
 		setShowModal(false);
 	};
 

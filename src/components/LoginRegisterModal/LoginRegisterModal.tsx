@@ -1,3 +1,5 @@
+import "./LoginRegisterModal.css"
+
 import React from "react";
 import ReactModal from "react-modal";
 import LoginForm from "../LoginForm/LoginForm";
