@@ -1,12 +1,12 @@
-.login-register-modal__close {
+.login-form__close {
 	align-self: flex-end;
 }
 
-.login-register-modal__input {
+.login-form__input {
 	font-family: inherit;
 }
 
-.login-register-modal__error {
+.login-form__error {
 	font-size: 0.8rem;
 	color: tomato;
 	margin-left: var(--space);
