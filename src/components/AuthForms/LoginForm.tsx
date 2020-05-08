@@ -27,31 +27,30 @@ const LOGIN_MUTATION = gql`
 export default function LoginForm({ setShowModal }: Props): ReactElement {
 	const { setAuthenticated } = useContext(AuthContext);
 
-	const [login, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION);
+	const [login, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION, {
+		onError: (e) => {
+			/* handled via above error object */
+		},
+	});
 	const initialValues: LoginFormValues = { username: "", password: "" };
+
+	const loginValidationSchema = object().shape<LoginFormValues>({
+		username: string().required("username is required"),
+		password: string().required("password is required"),
+	});
 
 	const handleLogin = async (
 		{ username, password }: LoginFormValues,
 		actions: FormikHelpers<LoginFormValues>
 	) => {
-		try {
-			actions.setSubmitting(true);
-			const { data } = await login({ variables: { username, password } });
-			setAuthToken(data?.login);
-			setAuthenticated(true);
-			actions.setSubmitting(false);
-			actions.resetForm();
-			setShowModal(false);
-		} catch (e) {
-			// Errors are handled via the errors object from the useMutation hook,
-			// so there is no need to do anything here
-		}
+		actions.setSubmitting(true);
+		const { data } = await login({ variables: { username, password } });
+		setAuthToken(data?.login);
+		setAuthenticated(true);
+		actions.setSubmitting(false);
+		actions.resetForm();
+		setShowModal(false);
 	};
-
-	const loginValidationSchema = object().shape({
-		username: string().required("username is required"),
-		password: string().required("password is required"),
-	});
 
 	return (
 		<Formik
@@ -64,34 +63,34 @@ export default function LoginForm({ setShowModal }: Props): ReactElement {
 					<Field
 						name="username"
 						type="text"
-						className="card login-form__input"
+						className="card auth-form__input"
 						placeholder="username"
 						aria-label="username"
 					/>
 					<ErrorMessage name="username">
-						{(error) => <div className="login-form__error">{error}</div>}
+						{(error) => <div className="auth-form__error">{error}</div>}
 					</ErrorMessage>
 					<Field
 						name="password"
 						type="password"
-						className="card login-form__input"
+						className="card auth-form__input"
 						placeholder="password"
 						aria-label="password"
 					/>
 					<ErrorMessage name="password">
-						{(error) => <div className="login-form__error">{error}</div>}
+						{(error) => <div className="auth-form__error">{error}</div>}
 					</ErrorMessage>
 					<button disabled={isSubmitting} className="button card" type="submit">
 						login
 					</button>
 					{error &&
 						error.graphQLErrors.map((gqlError, index) => (
-							<div key={index} className="login-form__error">
+							<div key={index} className="auth-form__error">
 								{gqlError.message}
 							</div>
 						))}
 					{error && error.networkError && (
-						<div className="login-form__error">
+						<div className="auth-form__error">
 							error connecting to server :(
 						</div>
 					)}
