@@ -1,4 +1,4 @@
-import "./LoginForm.css";
+import "./AuthForm.css";
 
 import React, { ReactElement, useContext } from "react";
 import gql from "graphql-tag";

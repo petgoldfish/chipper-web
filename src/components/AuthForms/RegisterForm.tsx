@@ -1,3 +1,5 @@
+import "./AuthForm.css";
+
 import React, { ReactElement } from "react";
 import { Formik, FormikHelpers, Form, Field, ErrorMessage } from "formik";
 import gql from "graphql-tag";
