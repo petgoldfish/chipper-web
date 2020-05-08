@@ -93,7 +93,7 @@ export default function RegisterForm({ setShowModal }: Props): ReactElement {
 						{(error) => <div className="auth-form__error">{error}</div>}
 					</ErrorMessage>
 					<button disabled={isSubmitting} className="button card" type="submit">
-						login
+						register
 					</button>
 					{error &&
 						error.graphQLErrors.map((gqlError, index) => (
