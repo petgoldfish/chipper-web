@@ -35,9 +35,9 @@ export type User = {
 
 export type Mutation = {
    __typename?: 'Mutation';
-  signup: User;
-  login: AuthPayload;
-  addChirp: Chirp;
+  signup: Scalars['Boolean'];
+  login: Scalars['String'];
+  addChirp: Scalars['Boolean'];
   deleteChirp: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
 };
@@ -69,11 +69,37 @@ export type MutationDeleteUserArgs = {
   id: Scalars['Int'];
 };
 
-export type AuthPayload = {
-   __typename?: 'AuthPayload';
-  token: Scalars['String'];
-  userId: Scalars['Float'];
+export type LoginMutationVariables = {
+  username: Scalars['String'];
+  password: Scalars['String'];
 };
+
+
+export type LoginMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'login'>
+);
+
+export type SignupMutationVariables = {
+  username: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type SignupMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'signup'>
+);
+
+export type AddChirpMutationVariables = {
+  content: Scalars['String'];
+};
+
+
+export type AddChirpMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'addChirp'>
+);
 
 export type FeedQueryVariables = {};
 

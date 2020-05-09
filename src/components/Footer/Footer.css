@@ -1,0 +1,7 @@
+.chipper__footer {
+	margin-bottom: var(--space);
+}
+
+.chipper__footer__link {
+	color: var(--primary-text);
+}

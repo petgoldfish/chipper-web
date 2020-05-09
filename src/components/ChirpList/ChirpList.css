@@ -1,7 +1,7 @@
 .chirp-list {
 	flex: 1;
 	align-self: stretch;
-	margin-top: var(--space);
+	padding: var(--space);
 	overflow-y: auto;
 
 	/* Hide scrollbar on Firefox */

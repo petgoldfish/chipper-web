@@ -1,8 +1,8 @@
-.chirp-card {
-	margin-left: var(--space);
-	margin-right: var(--space);
-}
-
 .chirp-card__content {
 	flex: 1;
+}
+
+.chirp-card__meta {
+	font-style: italic;
+	font-size: small;
 }
