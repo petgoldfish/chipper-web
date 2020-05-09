@@ -7,7 +7,7 @@ import { FeedQuery, Chirp } from "../../generated/graphql";
 
 import ChirpCard from "../ChirpCard/ChirpCard";
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
 	query feed {
 		feed {
 			id

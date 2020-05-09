@@ -3,7 +3,7 @@ import "./LoginRegisterModal.css";
 import React, { ReactElement } from "react";
 import ReactModal from "react-modal";
 import LoginForm from "../AuthForms/LoginForm";
-import RegisterForm from "../AuthForms/RegisterForm";
+import SignupForm from "../AuthForms/SignupForm";
 
 interface Props {
 	showModal: boolean;
@@ -52,7 +52,7 @@ export default function LoginRegisterModal({
 			{isLogin ? (
 				<LoginForm setShowModal={setShowModal} />
 			) : (
-				<RegisterForm setShowModal={setShowModal} setIsLogin={setIsLogin} />
+				<SignupForm setIsLogin={setIsLogin} />
 			)}
 		</ReactModal>
 	);
