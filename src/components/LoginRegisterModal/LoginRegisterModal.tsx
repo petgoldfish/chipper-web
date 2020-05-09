@@ -1,17 +1,22 @@
-import "./LoginRegisterModal.css"
+import "./LoginRegisterModal.css";
 
 import React, { ReactElement } from "react";
 import ReactModal from "react-modal";
-import LoginForm from "../LoginForm/LoginForm";
+import LoginForm from "../AuthForms/LoginForm";
+import RegisterForm from "../AuthForms/RegisterForm";
 
 interface Props {
 	showModal: boolean;
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-};
+	isLogin: boolean;
+	setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export default function LoginRegisterModal({
 	showModal,
 	setShowModal,
+	isLogin,
+	setIsLogin,
 }: Props): ReactElement {
 	return (
 		<ReactModal
@@ -44,7 +49,11 @@ export default function LoginRegisterModal({
 			>
 				X
 			</button>
-			<LoginForm setShowModal={setShowModal} />
+			{isLogin ? (
+				<LoginForm setShowModal={setShowModal} />
+			) : (
+				<RegisterForm setShowModal={setShowModal} setIsLogin={setIsLogin} />
+			)}
 		</ReactModal>
 	);
 }

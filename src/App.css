@@ -1,8 +1,10 @@
 :root {
   --primary: #424242;
   --secondary: #616161;
-  --accent: #FFD600;
   --primary-text: whitesmoke;
+  --secondary-text: black;
+  --accent: #FFD600;
+  --error: tomato;
   --shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   --rounding: 8px;
   --space: 16px;
@@ -44,10 +46,11 @@
 
 .button {
   cursor: pointer;
-	font-family: inherit;
+  font-family: inherit;
+  font-weight: bold;
 	background-color: var(--accent);
 	padding: var(--space-s);
-	color: black;
+	color: var(--secondary-text);
 }
 
 @media only screen and (max-device-width: 480px) {
