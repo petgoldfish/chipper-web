@@ -9,12 +9,14 @@ interface Props {
 	showModal: boolean;
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 	isLogin: boolean;
+	setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function LoginRegisterModal({
 	showModal,
 	setShowModal,
 	isLogin,
+	setIsLogin,
 }: Props): ReactElement {
 	return (
 		<ReactModal
@@ -50,7 +52,7 @@ export default function LoginRegisterModal({
 			{isLogin ? (
 				<LoginForm setShowModal={setShowModal} />
 			) : (
-				<RegisterForm setShowModal={setShowModal} />
+				<RegisterForm setShowModal={setShowModal} setIsLogin={setIsLogin} />
 			)}
 		</ReactModal>
 	);

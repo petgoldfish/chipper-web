@@ -43,7 +43,12 @@ export default function Header() {
 					</button>
 				</>
 			)}
-			<LoginRegisterModal showModal={showModal} setShowModal={setShowModal} isLogin={isLogin}/>
+			<LoginRegisterModal
+				showModal={showModal}
+				setShowModal={setShowModal}
+				isLogin={isLogin}
+				setIsLogin={setIsLogin}
+			/>
 		</div>
 	);
 }

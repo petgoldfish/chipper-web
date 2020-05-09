@@ -15,6 +15,7 @@ interface SignupFormValues {
 
 interface Props {
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SIGNUP_MUTATION = gql`
@@ -25,7 +26,10 @@ const SIGNUP_MUTATION = gql`
 	}
 `;
 
-export default function RegisterForm({ setShowModal }: Props): ReactElement {
+export default function RegisterForm({
+	setShowModal,
+	setIsLogin,
+}: Props): ReactElement {
 	const [signup, { error }] = useMutation<SignupMutation>(SIGNUP_MUTATION, {
 		onError: (e) => {
 			/* handled via above error object */
@@ -54,6 +58,7 @@ export default function RegisterForm({ setShowModal }: Props): ReactElement {
 		await signup({ variables: { username, password, passwordConfirm } });
 		actions.resetForm();
 		actions.setSubmitting(false);
+		setIsLogin(true);
 	};
 
 	return (
