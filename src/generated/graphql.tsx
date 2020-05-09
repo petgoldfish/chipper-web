@@ -91,6 +91,16 @@ export type SignupMutation = (
   & Pick<Mutation, 'signup'>
 );
 
+export type AddChirpMutationVariables = {
+  content: Scalars['String'];
+};
+
+
+export type AddChirpMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'addChirp'>
+);
+
 export type FeedQueryVariables = {};
 
 

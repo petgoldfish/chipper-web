@@ -6,6 +6,7 @@
 .chirp-form__textarea {
 	width: 50%;
 	min-height: 80px;
+	font-family: inherit;
 	resize: none;
 }
 

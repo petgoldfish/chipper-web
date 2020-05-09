@@ -68,7 +68,7 @@ export default function LoginForm({ setShowModal }: Props): ReactElement {
 						aria-label="username"
 					/>
 					<ErrorMessage name="username">
-						{(error) => <div className="auth-form__error">{error}</div>}
+						{(error) => <div className="form__error">{error}</div>}
 					</ErrorMessage>
 					<Field
 						name="password"
@@ -78,19 +78,19 @@ export default function LoginForm({ setShowModal }: Props): ReactElement {
 						aria-label="password"
 					/>
 					<ErrorMessage name="password">
-						{(error) => <div className="auth-form__error">{error}</div>}
+						{(error) => <div className="form__error">{error}</div>}
 					</ErrorMessage>
 					<button disabled={isSubmitting} className="button card" type="submit">
 						login
 					</button>
 					{error &&
 						error.graphQLErrors.map((gqlError, index) => (
-							<div key={index} className="auth-form__error">
+							<div key={index} className="form__error">
 								{gqlError.message}
 							</div>
 						))}
 					{error && error.networkError && (
-						<div className="auth-form__error">
+						<div className="form__error">
 							error connecting to server :(
 						</div>
 					)}

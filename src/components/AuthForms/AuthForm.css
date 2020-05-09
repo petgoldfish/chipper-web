@@ -1,11 +1,3 @@
 .auth-form__input {
 	font-family: inherit;
 }
-
-.auth-form__error {
-	font-size: 0.8rem;
-	color: var(--error);
-	margin-left: var(--space);
-	margin-bottom: var(--space);
-	margin-top: calc(-1 * var(--space-s));
-}
