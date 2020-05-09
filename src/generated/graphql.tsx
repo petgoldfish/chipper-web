@@ -35,9 +35,9 @@ export type User = {
 
 export type Mutation = {
    __typename?: 'Mutation';
-  signup: User;
+  signup: Scalars['Boolean'];
   login: Scalars['String'];
-  addChirp: Chirp;
+  addChirp: Scalars['Boolean'];
   deleteChirp: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
 };
@@ -88,10 +88,7 @@ export type SignupMutationVariables = {
 
 export type SignupMutation = (
   { __typename?: 'Mutation' }
-  & { signup: (
-    { __typename?: 'User' }
-    & Pick<User, 'id'>
-  ) }
+  & Pick<Mutation, 'signup'>
 );
 
 export type FeedQueryVariables = {};

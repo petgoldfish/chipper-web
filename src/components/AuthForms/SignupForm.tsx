@@ -14,22 +14,16 @@ interface SignupFormValues {
 }
 
 interface Props {
-	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 	setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SIGNUP_MUTATION = gql`
 	mutation signup($username: String!, $password: String!) {
-		signup(name: $username, password: $password) {
-			id
-		}
+		signup(name: $username, password: $password)
 	}
 `;
 
-export default function RegisterForm({
-	setShowModal,
-	setIsLogin,
-}: Props): ReactElement {
+export default function SignupForm({ setIsLogin }: Props): ReactElement {
 	const [signup, { error }] = useMutation<SignupMutation>(SIGNUP_MUTATION, {
 		onError: (e) => {
 			/* handled via above error object */
@@ -55,10 +49,14 @@ export default function RegisterForm({
 		actions: FormikHelpers<SignupFormValues>
 	) => {
 		actions.setSubmitting(true);
-		await signup({ variables: { username, password, passwordConfirm } });
+		const data = await signup({
+			variables: { username, password, passwordConfirm },
+		});
 		actions.resetForm();
 		actions.setSubmitting(false);
-		setIsLogin(true);
+		if (!data.errors) {
+			setIsLogin(true);
+		}
 	};
 
 	return (
@@ -100,7 +98,7 @@ export default function RegisterForm({
 						{(error) => <div className="auth-form__error">{error}</div>}
 					</ErrorMessage>
 					<button disabled={isSubmitting} className="button card" type="submit">
-						register
+						signup
 					</button>
 					{error &&
 						error.graphQLErrors.map((gqlError, index) => (
