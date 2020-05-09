@@ -35,7 +35,10 @@ export default function ChirpForm() {
 		{ content }: ChirpFormValues,
 		actions: FormikHelpers<ChirpFormValues>
 	) => {
+		actions.setSubmitting(true);
 		await addChirp({ variables: { content } });
+		actions.resetForm();
+		actions.setSubmitting(false);
 	};
 
 	return authenticated ? (
@@ -53,7 +56,7 @@ export default function ChirpForm() {
 							className="chirp-form__textarea card"
 							placeholder="what's buggin' ya?"
 							aria-label="Chirp Text"
-							max={140}
+							maxLength={140}
 						/>
 						<ErrorMessage name="content">
 							{(error) => <div className="form__error">{error}</div>}
