@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-import { FEED_QUERY } from "../ChirpList/ChirpList";
+import { FEED_QUERY } from "../Home/Home";
 import { Formik, FormikHelpers, Form, Field, ErrorMessage } from "formik";
 import { AddChirpMutation } from "../../generated/graphql";
 import { object, string } from "yup";

@@ -1,42 +1,16 @@
+import React from "react";
+import { Chirp } from "../../generated/graphql";
+import ChirpCard from "../ChirpCard/ChirpCard";
 import "./ChirpList.css";
 
-import React from "react";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
-import { FeedQuery, Chirp } from "../../generated/graphql";
+interface Props {
+	chirps: Array<Partial<Chirp>> | null | undefined;
+}
 
-import ChirpCard from "../ChirpCard/ChirpCard";
-
-export const FEED_QUERY = gql`
-	query feed {
-		feed {
-			id
-			content
-			createdAt
-			author {
-				id
-				name
-			}
-		}
-	}
-`;
-
-export default function ChirpList() {
-	const { loading, error, data } = useQuery<FeedQuery>(FEED_QUERY);
-
-	if (loading) {
-		return <div className="chirp-list flex-column">loading chirps...</div>;
-	}
-
-	if (error || !data) {
-		return (
-			<div className="chirp-list flex-column">error getting chirp feed :(</div>
-		);
-	}
-
+export default function ChirpList({ chirps }: Props) {
 	return (
 		<div className="chirp-list flex-column">
-			{data.feed?.map((chirp: Chirp) => (
+			{chirps?.map((chirp) => (
 				<ChirpCard key={chirp.id} chirp={chirp} />
 			))}
 		</div>
