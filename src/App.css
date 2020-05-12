@@ -53,6 +53,10 @@
 	color: var(--secondary-text);
 }
 
+.button--danger {
+	background-color: var(--error);
+}
+
 .form__error {
 	font-size: 0.8rem;
 	color: var(--error);

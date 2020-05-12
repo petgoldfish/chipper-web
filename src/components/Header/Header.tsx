@@ -4,6 +4,7 @@ import React, { useState, useContext } from "react";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
 import { AuthContext } from "../../context/AuthContext";
 import { setAuthToken } from "../../authToken";
+import { Link } from "@reach/router";
 
 export default function Header() {
 	const [showModal, setShowModal] = useState(false);
@@ -24,9 +25,17 @@ export default function Header() {
 		<div className="chipper__header">
 			<h1 className="chipper__header__title">chipper</h1>
 			{authenticated ? (
-				<button className="chipper__header__login button card" onClick={logout}>
-					logout
-				</button>
+				<>
+					<button
+						className="chipper__header__login button card"
+						onClick={logout}
+					>
+						logout
+					</button>
+					<Link to="/me">
+						<button className="chipper__header__login button card">me</button>
+					</Link>
+				</>
 			) : (
 				<>
 					<button
