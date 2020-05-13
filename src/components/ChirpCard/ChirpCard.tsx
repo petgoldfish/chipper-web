@@ -1,8 +1,7 @@
-import "./ChirpCard.css";
-
 import React from "react";
-import { Chirp } from "../../generated/graphql";
 import { format } from "timeago.js";
+import { Chirp } from "../../generated/graphql";
+import "./ChirpCard.css";
 
 type ChirpCardProps = {
 	chirp: Partial<Chirp>;

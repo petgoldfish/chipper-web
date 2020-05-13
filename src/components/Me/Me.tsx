@@ -5,7 +5,6 @@ import React, { ReactElement, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { MeQuery } from "../../generated/graphql";
 import ChirpList from "../ChirpList/ChirpList";
-import { FEED_QUERY } from "../Home/Home";
 import "./Me.css";
 
 interface Props {}
@@ -29,23 +28,38 @@ const DELETE_ACCOUNT_MUTATION = gql`
 	}
 `;
 
+const DELETE_CHIRPS_MUTATION = gql`
+	mutation deleteChirps {
+		deleteChirps
+	}
+`;
+
 export default function Me(props: Props & RouteComponentProps): ReactElement {
 	const { authenticated, logout } = useContext(AuthContext);
 	const { loading, error, data } = useQuery<MeQuery>(ME_QUERY);
 
-	const [deleteAccount] = useMutation(DELETE_ACCOUNT_MUTATION, {
-		refetchQueries: [{ query: FEED_QUERY }],
-	});
+	const [deleteAccount] = useMutation(DELETE_ACCOUNT_MUTATION);
+	const [deleteChirps, { called }] = useMutation(DELETE_CHIRPS_MUTATION);
 
 	async function handleDeleteAccount() {
 		await deleteAccount();
 		logout();
 	}
 
+	async function handleDeleteChirps() {
+		await deleteChirps();
+	}
+
 	return authenticated ? (
 		<>
 			<div className="card flex-column">
 				<h2>{data?.me.name}</h2>
+				<button
+					className="deleteButton card button button--danger"
+					onClick={handleDeleteChirps}
+				>
+					delete chirps
+				</button>
 				<button
 					className="deleteButton card button button--danger"
 					onClick={handleDeleteAccount}

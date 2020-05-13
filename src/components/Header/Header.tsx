@@ -26,7 +26,10 @@ export default function Header() {
 					<Link to="/me">
 						<button className="header__login button card">me</button>
 					</Link>
-					<button className="header__login button card" onClick={() => logout}>
+					<button
+						className="header__login button card"
+						onClick={() => logout()}
+					>
 						logout
 					</button>
 				</>

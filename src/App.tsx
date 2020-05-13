@@ -3,9 +3,9 @@ import React, { ReactElement } from "react";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import AuthContextProvider from "./context/AuthContext";
 import Home from "./components/Home/Home";
 import Me from "./components/Me/Me";
+import AuthContextProvider from "./context/AuthContext";
 
 function App(): ReactElement {
 	return (

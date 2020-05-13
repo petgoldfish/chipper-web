@@ -40,6 +40,7 @@ export type Mutation = {
   addChirp: Scalars['Boolean'];
   deleteChirp: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
+  deleteChirps: Scalars['Boolean'];
 };
 
 
@@ -132,4 +133,12 @@ export type DeleteAccountMutationVariables = {};
 export type DeleteAccountMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'deleteUser'>
+);
+
+export type DeleteChirpsMutationVariables = {};
+
+
+export type DeleteChirpsMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteChirps'>
 );

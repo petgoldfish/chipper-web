@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import { gql } from "apollo-boost";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { FeedQuery } from "../../generated/graphql";
 import ChirpForm from "../ChirpForm/ChirpForm";
 import ChirpList from "../ChirpList/ChirpList";
