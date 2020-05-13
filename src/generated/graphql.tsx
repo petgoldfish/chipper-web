@@ -64,11 +64,6 @@ export type MutationDeleteChirpArgs = {
   id: Scalars['Float'];
 };
 
-
-export type MutationDeleteUserArgs = {
-  id: Scalars['Int'];
-};
-
 export type LoginMutationVariables = {
   username: Scalars['String'];
   password: Scalars['String'];
@@ -129,4 +124,12 @@ export type MeQuery = (
       & Pick<Chirp, 'id' | 'content' | 'createdAt'>
     )>> }
   ) }
+);
+
+export type DeleteAccountMutationVariables = {};
+
+
+export type DeleteAccountMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteUser'>
 );

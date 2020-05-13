@@ -1,21 +1,13 @@
-import "./Header.css";
-
-import React, { useState, useContext } from "react";
-import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
+import { Link } from "@reach/router";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { setAuthToken } from "../../authToken";
-import { Link, navigate } from "@reach/router";
+import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
+import "./Header.css";
 
 export default function Header() {
 	const [showModal, setShowModal] = useState(false);
 	const [isLogin, setIsLogin] = useState(true);
-	const { authenticated, setAuthenticated } = useContext(AuthContext);
-
-	function logout() {
-		setAuthToken(null);
-		setAuthenticated(false);
-		navigate("/");
-	}
+	const { authenticated, logout } = useContext(AuthContext);
 
 	function handleAuthClick(login: boolean) {
 		setIsLogin(login);
@@ -34,7 +26,7 @@ export default function Header() {
 					<Link to="/me">
 						<button className="header__login button card">me</button>
 					</Link>
-					<button className="header__login button card" onClick={logout}>
+					<button className="header__login button card" onClick={() => logout}>
 						logout
 					</button>
 				</>

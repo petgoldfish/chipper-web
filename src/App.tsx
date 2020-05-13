@@ -12,12 +12,10 @@ function App(): ReactElement {
 		<AuthContextProvider>
 			<div className="App flex-column">
 				<Header />
-				<div className="main flex-column">
-					<Router>
-						<Home path="/" default={true} />
-						<Me path="/me" />
-					</Router>
-				</div>
+				<Router className="main flex-column">
+					<Home path="/" default={true} />
+					<Me path="/me" />
+				</Router>
 				<Footer />
 			</div>
 		</AuthContextProvider>
