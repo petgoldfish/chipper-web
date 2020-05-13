@@ -39,7 +39,7 @@ export default function Me(props: Props & RouteComponentProps): ReactElement {
 	const { loading, error, data } = useQuery<MeQuery>(ME_QUERY);
 
 	const [deleteAccount] = useMutation(DELETE_ACCOUNT_MUTATION);
-	const [deleteChirps, { called }] = useMutation(DELETE_CHIRPS_MUTATION);
+	const [deleteChirps] = useMutation(DELETE_CHIRPS_MUTATION);
 
 	async function handleDeleteAccount() {
 		await deleteAccount();

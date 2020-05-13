@@ -5,7 +5,6 @@ import React, { useContext } from "react";
 import { object, string } from "yup";
 import { AuthContext } from "../../context/AuthContext";
 import { AddChirpMutation } from "../../generated/graphql";
-import { FEED_QUERY } from "../Home/Home";
 import "./ChirpForm.css";
 
 interface ChirpFormValues {
