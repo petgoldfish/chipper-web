@@ -22,7 +22,9 @@ export const FEED_QUERY = gql`
 `;
 
 export default function Home(props: Props & RouteComponentProps): ReactElement {
-	const { loading, error, data } = useQuery<FeedQuery>(FEED_QUERY);
+	const { loading, error, data } = useQuery<FeedQuery>(FEED_QUERY, {
+		fetchPolicy: "cache-and-network",
+	});
 
 	return (
 		<>

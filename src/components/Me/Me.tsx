@@ -36,10 +36,14 @@ const DELETE_CHIRPS_MUTATION = gql`
 
 export default function Me(props: Props & RouteComponentProps): ReactElement {
 	const { authenticated, logout } = useContext(AuthContext);
-	const { loading, error, data } = useQuery<MeQuery>(ME_QUERY);
+	const { loading, error, data } = useQuery<MeQuery>(ME_QUERY, {
+		fetchPolicy: "cache-and-network",
+	});
 
 	const [deleteAccount] = useMutation(DELETE_ACCOUNT_MUTATION);
-	const [deleteChirps] = useMutation(DELETE_CHIRPS_MUTATION);
+	const [deleteChirps] = useMutation(DELETE_CHIRPS_MUTATION, {
+		refetchQueries: [{ query: ME_QUERY }],
+	});
 
 	async function handleDeleteAccount() {
 		await deleteAccount();

@@ -6,6 +6,7 @@ import { object, string } from "yup";
 import { AuthContext } from "../../context/AuthContext";
 import { AddChirpMutation } from "../../generated/graphql";
 import "./ChirpForm.css";
+import { FEED_QUERY } from "../Home/Home";
 
 interface ChirpFormValues {
 	content: string;
@@ -19,7 +20,9 @@ const ADD_CHIRP_MUTATION = gql`
 
 export default function ChirpForm() {
 	const { authenticated } = useContext(AuthContext);
-	const [addChirp] = useMutation<AddChirpMutation>(ADD_CHIRP_MUTATION);
+	const [addChirp] = useMutation<AddChirpMutation>(ADD_CHIRP_MUTATION, {
+		refetchQueries: [{ query: FEED_QUERY }],
+	});
 
 	const initialValues: ChirpFormValues = { content: "" };
 
