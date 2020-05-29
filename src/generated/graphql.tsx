@@ -87,6 +87,16 @@ export type SignupMutation = (
   & Pick<Mutation, 'signup'>
 );
 
+export type DeleteChirpMutationVariables = {
+  chirpID: Scalars['Float'];
+};
+
+
+export type DeleteChirpMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteChirp'>
+);
+
 export type AddChirpMutationVariables = {
   content: Scalars['String'];
 };

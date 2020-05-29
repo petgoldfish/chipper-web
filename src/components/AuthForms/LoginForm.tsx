@@ -25,11 +25,7 @@ const LOGIN_MUTATION = gql`
 export default function LoginForm({ setShowModal }: Props): ReactElement {
 	const { login } = useContext(AuthContext);
 
-	const [authenticate, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION, {
-		onError: (e) => {
-			/* handled via above error object */
-		},
-	});
+	const [authenticate, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION);
 
 	const initialValues: LoginFormValues = { username: "", password: "" };
 
