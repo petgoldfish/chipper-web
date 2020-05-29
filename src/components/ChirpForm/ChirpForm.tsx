@@ -1,13 +1,12 @@
-import "./ChirpForm.css";
-
-import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-import { FEED_QUERY } from "../ChirpList/ChirpList";
-import { Formik, FormikHelpers, Form, Field, ErrorMessage } from "formik";
-import { AddChirpMutation } from "../../generated/graphql";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import gql from "graphql-tag";
+import React, { useContext } from "react";
 import { object, string } from "yup";
+import { AuthContext } from "../../context/AuthContext";
+import { AddChirpMutation } from "../../generated/graphql";
+import "./ChirpForm.css";
+import { FEED_QUERY } from "../Home/Home";
 
 interface ChirpFormValues {
 	content: string;

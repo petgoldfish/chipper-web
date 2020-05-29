@@ -1,11 +1,10 @@
-import "./AuthForm.css";
-
-import React, { ReactElement } from "react";
-import { Formik, FormikHelpers, Form, Field, ErrorMessage } from "formik";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import gql from "graphql-tag";
+import React, { ReactElement } from "react";
+import { object, ref, string } from "yup";
 import { SignupMutation } from "../../generated/graphql";
-import { object, string, ref } from "yup";
+import "./AuthForm.css";
 
 interface SignupFormValues {
 	username: string;
@@ -107,9 +106,7 @@ export default function SignupForm({ setIsLogin }: Props): ReactElement {
 							</div>
 						))}
 					{error && error.networkError && (
-						<div className="form__error">
-							error connecting to server :(
-						</div>
+						<div className="form__error">error connecting to server :(</div>
 					)}
 				</Form>
 			)}
