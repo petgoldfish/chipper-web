@@ -15,6 +15,7 @@ export type Query = {
   feed?: Maybe<Array<Chirp>>;
   ping: Scalars['String'];
   users: Array<User>;
+  me: User;
 };
 
 export type Chirp = {
@@ -28,7 +29,6 @@ export type Chirp = {
 
 export type User = {
    __typename?: 'User';
-  id: Scalars['ID'];
   name: Scalars['String'];
   chirps?: Maybe<Array<Chirp>>;
 };
@@ -40,6 +40,7 @@ export type Mutation = {
   addChirp: Scalars['Boolean'];
   deleteChirp: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
+  deleteChirps: Scalars['Boolean'];
 };
 
 
@@ -64,11 +65,6 @@ export type MutationDeleteChirpArgs = {
   id: Scalars['Float'];
 };
 
-
-export type MutationDeleteUserArgs = {
-  id: Scalars['Int'];
-};
-
 export type LoginMutationVariables = {
   username: Scalars['String'];
   password: Scalars['String'];
@@ -91,6 +87,16 @@ export type SignupMutation = (
   & Pick<Mutation, 'signup'>
 );
 
+export type DeleteChirpMutationVariables = {
+  chirpID: Scalars['Float'];
+};
+
+
+export type DeleteChirpMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteChirp'>
+);
+
 export type AddChirpMutationVariables = {
   content: Scalars['String'];
 };
@@ -111,7 +117,38 @@ export type FeedQuery = (
     & Pick<Chirp, 'id' | 'content' | 'createdAt'>
     & { author: (
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'name'>
+      & Pick<User, 'name'>
     ) }
   )>> }
+);
+
+export type MeQueryVariables = {};
+
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & { me: (
+    { __typename?: 'User' }
+    & Pick<User, 'name'>
+    & { chirps?: Maybe<Array<(
+      { __typename?: 'Chirp' }
+      & Pick<Chirp, 'id' | 'content' | 'createdAt'>
+    )>> }
+  ) }
+);
+
+export type DeleteAccountMutationVariables = {};
+
+
+export type DeleteAccountMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteUser'>
+);
+
+export type DeleteChirpsMutationVariables = {};
+
+
+export type DeleteChirpsMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteChirps'>
 );

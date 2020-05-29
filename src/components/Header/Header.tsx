@@ -1,19 +1,13 @@
-import "./Header.css";
-
-import React, { useState, useContext } from "react";
-import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
+import { Link } from "@reach/router";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { setAuthToken } from "../../authToken";
+import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
+import "./Header.css";
 
 export default function Header() {
 	const [showModal, setShowModal] = useState(false);
 	const [isLogin, setIsLogin] = useState(true);
-	const { authenticated, setAuthenticated } = useContext(AuthContext);
-
-	function logout() {
-		setAuthToken(null);
-		setAuthenticated(false);
-	}
+	const { authenticated, logout } = useContext(AuthContext);
 
 	function handleAuthClick(login: boolean) {
 		setIsLogin(login);
@@ -22,21 +16,33 @@ export default function Header() {
 
 	return (
 		<div className="chipper__header">
-			<h1 className="chipper__header__title">chipper</h1>
+			<div className="header__title">
+				<Link className="header__link" to="/">
+					chipper
+				</Link>
+			</div>
 			{authenticated ? (
-				<button className="chipper__header__login button card" onClick={logout}>
-					logout
-				</button>
+				<>
+					<Link to="/me">
+						<button className="header__login button card">me</button>
+					</Link>
+					<button
+						className="header__login button card"
+						onClick={() => logout()}
+					>
+						logout
+					</button>
+				</>
 			) : (
 				<>
 					<button
-						className="chipper__header__login button card"
+						className="header__login button card"
 						onClick={(e) => handleAuthClick(false)}
 					>
 						signup
 					</button>
 					<button
-						className="chipper__header__login button card"
+						className="header__login button card"
 						onClick={(e) => handleAuthClick(true)}
 					>
 						login

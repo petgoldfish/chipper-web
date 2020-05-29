@@ -1,9 +1,8 @@
-import "./LoginRegisterModal.css";
-
 import React, { ReactElement } from "react";
 import ReactModal from "react-modal";
 import LoginForm from "../AuthForms/LoginForm";
 import SignupForm from "../AuthForms/SignupForm";
+import "./LoginRegisterModal.css";
 
 interface Props {
 	showModal: boolean;

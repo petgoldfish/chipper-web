@@ -1,15 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient, {
 	InMemoryCache,
 	NormalizedCacheObject,
 } from "apollo-boost";
-
-import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
 import { getAuthToken } from "./authToken";
+import "./index.css";
+import * as serviceWorker from "./serviceWorker";
 
 const client = new ApolloClient<NormalizedCacheObject>({
 	uri: process.env.REACT_APP_API_SERVER_URL,

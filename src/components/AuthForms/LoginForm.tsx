@@ -1,13 +1,11 @@
-import "./AuthForm.css";
-
-import React, { ReactElement, useContext } from "react";
-import gql from "graphql-tag";
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
-import { object, string } from "yup";
 import { useMutation } from "@apollo/react-hooks";
-import { LoginMutation } from "../../generated/graphql";
-import { setAuthToken } from "../../authToken";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import gql from "graphql-tag";
+import React, { ReactElement, useContext } from "react";
+import { object, string } from "yup";
 import { AuthContext } from "../../context/AuthContext";
+import { LoginMutation } from "../../generated/graphql";
+import "./AuthForm.css";
 
 interface Props {
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,13 +23,10 @@ const LOGIN_MUTATION = gql`
 `;
 
 export default function LoginForm({ setShowModal }: Props): ReactElement {
-	const { setAuthenticated } = useContext(AuthContext);
+	const { login } = useContext(AuthContext);
 
-	const [login, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION, {
-		onError: (e) => {
-			/* handled via above error object */
-		},
-	});
+	const [authenticate, { error }] = useMutation<LoginMutation>(LOGIN_MUTATION);
+
 	const initialValues: LoginFormValues = { username: "", password: "" };
 
 	const loginValidationSchema = object().shape<LoginFormValues>({
@@ -44,9 +39,8 @@ export default function LoginForm({ setShowModal }: Props): ReactElement {
 		actions: FormikHelpers<LoginFormValues>
 	) => {
 		actions.setSubmitting(true);
-		const { data } = await login({ variables: { username, password } });
-		setAuthToken(data?.login);
-		setAuthenticated(true);
+		const { data } = await authenticate({ variables: { username, password } });
+		login(data?.login);
 		actions.setSubmitting(false);
 		actions.resetForm();
 		setShowModal(false);
@@ -90,9 +84,7 @@ export default function LoginForm({ setShowModal }: Props): ReactElement {
 							</div>
 						))}
 					{error && error.networkError && (
-						<div className="form__error">
-							error connecting to server :(
-						</div>
+						<div className="form__error">error connecting to server :(</div>
 					)}
 				</Form>
 			)}
