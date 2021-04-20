@@ -4,6 +4,7 @@
 
 .chirp-card__main {
 	flex: 1;
+	margin-right: var(--space-s);
 }
 
 .chirp-card__content {
